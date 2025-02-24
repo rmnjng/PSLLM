@@ -95,7 +95,7 @@ This is also roughly the amount of physical memory (RAM, not GPU) needed to run 
 
 ### Storing Default Configurations
 Some parameters that are used throughout the module can be stored centrally. This eliminates the need for specifying each time. 
-This example enbales logging to '`$env:localappdata`\PSLLM\PSLLM.log' and sets the 8 B DeepSeek llama distilation (q4) model as default. If not already, the model will be downloaded and loaded by default.
+This example enbales logging to '`$env:localappdata\PSLLM\PSLLM.log`' and sets the 8 B DeepSeek llama distilation (q4) model as default. If not already, the model will be downloaded and loaded by default.
 
 ```powershell
 Save-PSLLMConfig -Logging $true -ModelName 'deepseek-r1-distill-llama-8b:8b-gguf-q4-km'
