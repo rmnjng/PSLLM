@@ -46,11 +46,10 @@ Get-PSLLMCompletion -Message "What is the capital of France?"
 ```
 
 On the first run, the following happens:
-- Download and run the [Cortex Windows installer](https://cortex.so/) (~1.8 GB)
-- Download the default engine ([llama-cpp](https://github.com/ggml-org/llama.cpp))
-- Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral))
- - Model size depends on the amount of parameters as well as quantization. Check out [Managing Models](#managing-models) for more information.
-- Generate the response
+- Download and run the [Cortex Windows installer](https://cortex.so/) (~1.8 GB).
+- Download the default engine ([llama-cpp](https://github.com/ggml-org/llama.cpp)).
+- Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral)) - Model size depends on the amount of parameters as well as quantization. Check out [Managing Models](#managing-models) for more information.
+- Generate the response.
 
 ### Managing Conversations
 This command starts or adds to a multi-turn conversation. It sends the whole thread to the LLM and adds the new message as well as the AI answer to the thread.
@@ -85,12 +84,12 @@ Model size approximations based on the amount of **P**arameters and the used **Q
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
 |-------|--------|--------|--------|--------|--------|--------|
-|  **1B**  | 0.6 GB | 0.7 GB | 0.8 GB | 0.9 GB |   1 GB | 1.3 GB |
-|  **3B**  | 1.4 GB | 1.7 GB |   2 GB | 2.3 GB | 2.6 GB | 3.4 GB |
-|  **7B**  | 2.7 GB | 3.5 GB | 4.3 GB | 5.1 GB |   6 GB | 7.7 GB |
-| **14B**  | 5.7 GB | 7.3 GB |   9 GB |  10 GB |  12 GB |  16 GB |
-| **32B**  |  12 GB |  16 GB |  19 GB |  23 GB |  27 GB |  35 GB |
-| **70B**  |  26 GB |  34 GB |  42 GB |  50 GB |   N/A  |   N/A  |
+|  **1B**  | 0.6GB | 0.7GB | 0.8GB | 0.9GB |   1GB | 1.3GB |
+|  **3B**  | 1.4GB | 1.7GB |   2GB | 2.3GB | 2.6GB | 3.4GB |
+|  **7B**  | 2.7GB | 3.5GB | 4.3GB | 5.1GB |   6GB | 7.7GB |
+| **14B**  | 5.7GB | 7.3GB |   9GB |  10GB |  12GB |  16GB |
+| **32B**  |  12GB |  16GB |  19GB |  23GB |  27GB |  35GB |
+| **70B**  |  26GB |  34GB |  42GB |  50GB |   N/A  |   N/A  |
 
 This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs, the only difference is speed.
 
