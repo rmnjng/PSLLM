@@ -176,12 +176,12 @@ For issues, please open a ticket on the [GitHub Issues](#) page.
 - [Uninstall-PSLLMEngine](#uninstall-psllmengine)
 
 
-# Get-PSLLMCompletion
+## Get-PSLLMCompletion
 
-## Synopsis
+### Synopsis
 Retrieves an AI-generated response from a local language model via the Cortex server.
 
-## Description
+### Description
 This advanced function interacts with a local AI model through the Cortex server's chat completion endpoint. 
 It supports flexible message input methods:
 - Single message with system context
@@ -196,38 +196,38 @@ Key Capabilities:
 - Async processing with file or window output
 - Detailed response tracking and logging
 
-## Parameters
-### -Message
+### Parameters
+#### -Message
 **Type:** String
 
 **Description:** A single user message to send to the language model. Used when not providing a full message thread.
 
-### -Messages
+#### -Messages
 **Type:** Object
 
 **Description:** An array of message objects representing a conversation thread. Allows for more complex conversational contexts.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** Specifies the AI model to use. Defaults to the model configured in the system settings.
 
-### -EngineName
+#### -EngineName
 **Type:** String
 
 **Description:** Optional. Specifies a particular engine for model processing.
 
-### -Assistant
+#### -Assistant
 **Type:** String
 
 **Description:** Defines the system role or persona for the AI. Defaults to a helpful assistant persona.
 
-### -MaxTokens
+#### -MaxTokens
 **Type:** Int32
 
 **Description:** Maximum number of tokens in the AI's response. Controls response length. Default is 2048.
 
-### -Temperature
+#### -Temperature
 **Type:** Single
 
 **Description:** Controls response randomness (0.0-1.0):
@@ -235,66 +235,66 @@ Key Capabilities:
 - 1.0: Maximum creativity and variation
 Default is 0.8.
 
-### -TopP
+#### -TopP
 **Type:** Single
 
 **Description:** Controls token selection probability. Influences response diversity.
 Lower values make responses more focused, higher values increase variability.
 Default is 0.95.
 
-### -Detailed
+#### -Detailed
 **Type:** SwitchParameter
 
 **Description:** When specified, returns comprehensive metadata about the response instead of just the text.
 
-### -Async
+#### -Async
 **Type:** SwitchParameter
 
 **Description:** Enables asynchronous processing of the request.
 
-### -AsyncType
+#### -AsyncType
 **Type:** String
 
 **Description:** Specifies async output method: "File", "Window", or "Both".
 
-### -DataDirectory
+#### -DataDirectory
 **Type:** String
 
 **Description:** Directory for storing async results. Defaults to %LOCALAPPDATA%\PSLLM.
 
-### -StoreFile
+#### -StoreFile
 **Type:** SwitchParameter
 
 **Description:** If set, saves the response to a JSON file in the DataDirectory.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** Configuration object containing system settings.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Basic usage with a simple question
 
 ```powershell
 Get-PSLLMCompletion -Message "What is the capital of France?" 
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Retrieve detailed response metadata
 
 ```powershell
 Get-PSLLMCompletion -Message "Explain quantum computing" -Detailed
 ```
 
-### --- EXAMPLE 3 ---
+#### --- EXAMPLE 3 ---
 Async processing with window display
 
 ```powershell
 Get-PSLLMCompletion -Message "Generate a Python script" -Async -AsyncType Window
 ```
 
-### --- EXAMPLE 4 ---
+#### --- EXAMPLE 4 ---
 Complex conversation thread
 
 ```powershell
@@ -306,12 +306,12 @@ Get-PSLLMCompletion -Messages $thread -Temperature 0.7
 ``` 
 
 
-# Enter-PSLLMConversation
+## Enter-PSLLMConversation
 
-## Synopsis
+### Synopsis
 Continues or starts a conversation (thread) with a local Language Model (LLM).
 
-## Description
+### Description
 The Enter-PSLLMConversation function allows you to interact with a local language model by sending a message and receiving a response. 
 It manages conversation threads, creating a new thread if one doesn't exist or adding to an existing thread with the specified title.
 
@@ -322,33 +322,33 @@ Key features:
 - Adds the AI response back to the thread
 - Supports customization of model parameters like temperature and max tokens
 
-## Parameters
-### -Message
+### Parameters
+#### -Message
 **Type:** String
 
 **Description:** The user input message for which the AI model will generate a response. This is a mandatory parameter.
 
-### -ThreadName
+#### -ThreadName
 **Type:** String
 
 **Description:** The name of the conversation to create or add to. This helps in organizing and tracking multiple conversations.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** Optional. The name of the AI model to use for generating responses. If not specified, uses the model from the configuration.
 
-### -Assistant
+#### -Assistant
 **Type:** String
 
 **Description:** Optional. The initial system role or persona that defines the AI's behavior. Defaults to "You are a helpful assistant."
 
-### -MaxTokens
+#### -MaxTokens
 **Type:** Int32
 
 **Description:** Optional. Maximum number of tokens in the AI's response. Defaults to 2048. Controls the length of the generated response.
 
-### -Temperature
+#### -Temperature
 **Type:** Single
 
 **Description:** Optional. Controls the randomness of the AI's response. Range is 0.0-1.0. 
@@ -356,35 +356,35 @@ Key features:
 - Higher values (closer to 1) make the output more creative and varied
 Defaults to 0.8.
 
-### -TopP
+#### -TopP
 **Type:** Single
 
 **Description:** Optional. Controls the cumulative probability cutoff for token selection. 
 - Helps in controlling the diversity of the generated text
 - Defaults to 0.95
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** Optional. The configuration object containing settings for the LLM interaction. 
 If not provided, the function will import the default configuration.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Start a new conversation about Python programming
 
 ```powershell
 Enter-PSLLMConversation -Message "Explain list comprehensions in Python" -ThreadName "Python Basics"
 ``` 
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Continue an existing conversation with more context
 
 ```powershell
 Enter-PSLLMConversation -Message "Can you provide an example of a list comprehension?" -ThreadName "Python Basics" -Temperature 0.5
 ```
 
-### --- EXAMPLE 3 ---
+#### --- EXAMPLE 3 ---
 Use a specific model with custom settings
 
 ```powershell
@@ -392,50 +392,50 @@ Enter-PSLLMConversation -Message "Write a short poem about technology" -ThreadNa
 ```
 
 
-# Get-PSLLMRAGContent
+## Get-PSLLMRAGContent
 
-## Synopsis
+### Synopsis
 Retrieves relevant content from RAG (Retrieval-Augmented Generation) storage based on input text.
 
-## Description
+### Description
 Uses embeddings to find and retrieve the most semantically similar content from previously stored RAG data.
 Calculates cosine similarity between the input text and stored embeddings to identify the most relevant content.
 
-## Parameters
-### -Text
+### Parameters
+#### -Text
 **Type:** String
 
 **Description:** The input text to find similar content for.
 
-### -RAGGroup
+#### -RAGGroup
 **Type:** String
 
 **Description:** The RAG group to search in. Defaults to "Default".
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** Optional. The name of the model to use. If not specified, uses the model from configuration.
 
-### -EngineName
+#### -EngineName
 **Type:** String
 
 **Description:** Optional. The name of the engine to use. If not specified, uses the engine from configuration.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Retrieves content most similar to the question about virtual machines.
 
 ```powershell
 Get-PSLLMRAGContent -Text "How do I create a new virtual machine?"
 ``` 
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Searches for content about Azure Storage in the AzureDocs RAG group.
 
 ```powershell
@@ -443,61 +443,61 @@ Get-PSLLMRAGContent -Text "What is Azure Storage?" -RAGGroup "AzureDocs"
 ``` 
 
 
-# Import-PSLLMConfig
+## Import-PSLLMConfig
 
-## Synopsis
+### Synopsis
 Imports the PSLLM configurations.
 
-## Description
+### Description
 Imports the PSLLM configurations from a JSON file in the local AppData directory.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Import-PSLLMConfig
 ```
 
-# Save-PSLLMConfig
+## Save-PSLLMConfig
 
-## Synopsis
+### Synopsis
 Saves the PSLLM configurations.
 
-## Description
+### Description
 Saves the PSLLM configurations to a JSON file in the local AppData directory.
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to use.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** The name of the model to use.
 
-### -Logging
+#### -Logging
 **Type:** Boolean
 
 **Description:** Whether verbose outputs are logged to a file.
 
-### -BaseUri
+#### -BaseUri
 **Type:** String
 
 **Description:** Base URI of the Cortex server. Defaults to "http://127.0.0.1:39281".
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b-gguf" -Logging $true
 ```
 
-# Start-PSLLMServer
+## Start-PSLLMServer
 
-## Synopsis
+### Synopsis
 Starts the local LLM server with specified engine and model.
 
-## Description
+### Description
 Initializes and starts the local LLM server, installing components if necessary.
 This function will:
 1. Install the server if not present
@@ -505,42 +505,42 @@ This function will:
 3. Install and start the specified engine
 4. Install and start the specified model
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to use. Must be one of: 'llama-cpp', 'onnxruntime', or 'tensorrt-llm'.
 If not specified, uses the engine from configuration.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** The name of the model to load. If not specified, uses the model from configuration.
 
-### -ModelNeeded
+#### -ModelNeeded
 **Type:** Boolean
 
 **Description:** Determines if only server needs to be started, or model needs to be loaded. Defaults to server only.
 
-### -Restart
+#### -Restart
 **Type:** SwitchParameter
 
 **Description:** Not only start but first stop the server.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Starts server with default engine and model from config
 
 ```powershell
 Start-PSLLMServer
 ```  
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Starts server with specific engine and model
 
 ```powershell
@@ -548,33 +548,33 @@ Start-PSLLMServer -EngineName "llama-cpp" -ModelName "mistral:7b-gguf"
 ```  
 
 
-# Stop-PSLLMServer
+## Stop-PSLLMServer
 
-## Synopsis
+### Synopsis
 Stops the local LLM server process.
 
-## Description
+### Description
 Sends a request to gracefully stop the local LLM server process.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMServer
 ```
 
 
-# Install-PSLLMServer
+## Install-PSLLMServer
 
-## Synopsis
+### Synopsis
 Installs the Cortex server for local LLM operations.
 
-## Description
+### Description
 Downloads and installs the Cortex server application required for running local LLM operations.
 This function handles the complete installation process including:
 - Checking for existing installation
@@ -582,39 +582,39 @@ This function handles the complete installation process including:
 - Running the installation
 - Verifying the installation
 
-## Parameters
-### -Force
+### Parameters
+#### -Force
 **Type:** SwitchParameter
 
 **Description:** If specified, skips confirmation prompts and proceeds with download and installation.
 Use this for automated installations.
 
-### -DownloadUri
+#### -DownloadUri
 **Type:** String
 
 **Description:** The address from where to download the latest Cortex Windows installer.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Interactively installs the server with confirmation prompts
 
 ```powershell
 Install-PSLLMServer
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Installs the server without confirmation prompts 
 
 ```powershell
 Install-PSLLMServer -Force
 ```
 
-### --- EXAMPLE 3 ---
+#### --- EXAMPLE 3 ---
 Installs the server with detailed progress information
 
 ```powershell
@@ -622,40 +622,40 @@ Install-PSLLMServer -Verbose
 ```
 
 
-# Uninstall-PSLLMServer
+## Uninstall-PSLLMServer
 
-## Synopsis
+### Synopsis
 Removes the Cortex application from the system.
 
-## Description
+### Description
 Uninstalls the Cortex server and optionally deletes its associated data directory. 
 The function identifies the uninstaller in the application directory and executes it silently. 
 
 If specified, the data directory is also deleted to ensure a clean uninstallation.
 
-## Parameters
-### -Force
+### Parameters
+#### -Force
 **Type:** SwitchParameter
 
 **Description:** Skips confirmation prompts and directly executes the uninstallation.
 
-### -DeleteData
+#### -DeleteData
 **Type:** SwitchParameter
 
 **Description:** Removes the data directory after uninstallation.
 
-### -DataDirectory
+#### -DataDirectory
 **Type:** String
 
 **Description:** Specifies the path to the data directory. Defaults to `%LOCALAPPDATA%\PSLLM`.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Uninstalls the Cortex server and deletes its data directory.
 
 ```powershell
@@ -663,468 +663,468 @@ Uninstall-PSLLMServer -DeleteData
 ```
 
 
-# Get-PSLLMHardwareInfo
+## Get-PSLLMHardwareInfo
 
-## Synopsis
+### Synopsis
 Retrieves hardware information from the local LLM server.
 
-## Description
+### Description
 Gets information about the hardware configuration and capabilities of the local LLM server.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMHardwareInfo
 ```
 
 
-# Test-PSLLMHealth
+## Test-PSLLMHealth
 
-## Synopsis
+### Synopsis
 Tests the health status of the local LLM server.
 
-## Description
+### Description
 Performs a health check on the local LLM server by making a request to the health endpoint.
 This function will return the server's health status and can be used to verify connectivity
 and server readiness.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Test-PSLLMHealth
 ```
 
 
-# Add-PSLLMThreadMessage
+## Add-PSLLMThreadMessage
 
-## Synopsis
+### Synopsis
 Adds a message to a chat thread.
 
-## Description
+### Description
 Adds a new message to a specified chat thread using either its ID or title.
 Can optionally create the thread if it doesn't exist.
 
-## Parameters
-### -Thread
+### Parameters
+#### -Thread
 **Type:** Object
 
 **Description:** The whole thread to add the message to.
 
-### -ThreadId
+#### -ThreadId
 **Type:** String
 
 **Description:** The ID of the thread to add the message to.
 
-### -ThreadName
+#### -ThreadName
 **Type:** String
 
 **Description:** The title of the thread to add the message to.
 
-### -Message
+#### -Message
 **Type:** String
 
 **Description:** The content of the message to add.
 
-### -Role
+#### -Role
 **Type:** String
 
 **Description:** The role of the message sender. Can be either "system", "user" or "assistant".
 
-### -CreateThreadIfNotExists
+#### -CreateThreadIfNotExists
 **Type:** SwitchParameter
 
 **Description:** If specified, creates a new thread with the given name if it doesn't exist.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Add-PSLLMThreadMessage -ThreadId "thread-123456" -Message "Hello!"
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 ```powershell
 Add-PSLLMThreadMessage -ThreadName "My Chat" -Message "Hi there" -CreateThreadIfNotExists
 ```
 
 
-# Get-PSLLMThreadMessages
+## Get-PSLLMThreadMessages
 
-## Synopsis
+### Synopsis
 Retrieves messages from a chat thread.
 
-## Description
+### Description
 Gets all messages from a specified chat thread using either its ID or title.
 Can optionally format the messages as a chat history.
 
-## Parameters
-### -Thread
+### Parameters
+#### -Thread
 **Type:** Object
 
 **Description:** The whole thread to retrieve messages from.
 
-### -ThreadId
+#### -ThreadId
 **Type:** String
 
 **Description:** The ID of the thread to retrieve messages from.
 
-### -ThreadName
+#### -ThreadName
 **Type:** String
 
 **Description:** The title of the thread to retrieve messages from.
 
-### -FormatAsChatHistory
+#### -FormatAsChatHistory
 **Type:** SwitchParameter
 
 **Description:** If specified, formats the output as a readable chat history.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThreadMessages -ThreadId "thread-123456"
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 ```powershell
 Get-PSLLMThreadMessages -ThreadName "My Chat" -FormatAsChatHistory
 ```
 
 
-# Get-PSLLMThread
+## Get-PSLLMThread
 
-## Synopsis
+### Synopsis
 Retrieves a specific chat thread by title.
 
-## Description
+### Description
 Gets a chat thread from the local LLM server using its title.
 
-## Parameters
-### -ThreadName
+### Parameters
+#### -ThreadName
 **Type:** String
 
 **Description:** The name of the thread to retrieve.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThread -ThreadName "My Chat Session"
 ```
 
 
-# Get-PSLLMThreads
+## Get-PSLLMThreads
 
-## Synopsis
+### Synopsis
 Retrieves all chat threads from the local LLM server.
 
-## Description
+### Description
 Gets a list of all available chat threads from the local LLM server.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThreads
 ```
 
 
-# New-PSLLMThread
+## New-PSLLMThread
 
-## Synopsis
+### Synopsis
 Creates a new chat thread.
 
-## Description
+### Description
 Creates a new chat thread on the local LLM server with the specified title.
 Optionally can reuse an existing thread if one exists with the same title.
 
-## Parameters
-### -ThreadName
+### Parameters
+#### -ThreadName
 **Type:** String
 
 **Description:** The name for the new thread.
 
-### -ReuseExisting
+#### -ReuseExisting
 **Type:** SwitchParameter
 
 **Description:** If specified, will return an existing thread with the same title instead of creating a new one.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 New-PSLLMThread -ThreadName "New Chat Session"
 ```
 
-### Example: --- EXAMPLE 2 ---
+### --- EXAMPLE 2 ---
 ```powershell
 New-PSLLMThread -ThreadName "My Chat" -ReuseExisting
 ```
 
 
-# Remove-PSLLMThread
+## Remove-PSLLMThread
 
-## Synopsis
+### Synopsis
 Removes a chat thread from the local LLM server.
 
-## Description
+### Description
 Deletes a specified chat thread from the local LLM server using either its ID or title.
 
-## Parameters
-### -Thread
+### Parameters
+#### -Thread
 **Type:** Object
 
 **Description:** The whole thread to remove.
 
-### -ThreadId
+#### -ThreadId
 **Type:** String
 
 **Description:** The ID of the thread to remove.
 
-### -ThreadName
+#### -ThreadName
 **Type:** String
 
 **Description:** The title of the thread to remove.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-### -WhatIf
+#### -WhatIf
 **Type:** SwitchParameter
 
 **Description:** 
 
-### -Confirm
+#### -Confirm
 **Type:** SwitchParameter
 
 **Description:** 
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMThread -ThreadId "thread-123456"
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 ```powershell
 Remove-PSLLMThread -ThreadName "My Chat Session"
 ```
 
 
-# Add-PSLLMFile
+## Add-PSLLMFile
 
-## Synopsis
+### Synopsis
 Uploads a file to the local LLM server.
 
-## Description
+### Description
 Uploads a specified file to the local LLM server for use with assistants or other
 purposes. Supports various file purposes and handles the multipart form data upload.
 
-## Parameters
-### -FilePath
+### Parameters
+#### -FilePath
 **Type:** String
 
 **Description:** The path to the file to upload.
 
-### -Purpose
+#### -Purpose
 **Type:** String
 
 **Description:** The purpose of the file. Defaults to "assistants".
 
-### -RAGGroup
+#### -RAGGroup
 **Type:** String
 
 **Description:** The RAG group to add the file to. Defaults to "Default".
 
-### -PartSize
+#### -PartSize
 **Type:** Int32
 
 **Description:** The size of the chunk to embedd. Defaults to 1024.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** Optional. The name of the model to use. If not specified, uses the model from configuration.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Add-PSLLMFile -FilePath "C:\data\context.txt"
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 ```powershell
 Add-PSLLMFile -FilePath "C:\data\training.json" -Purpose "fine-tuning"
 ```
 
 
-# Get-PSLLMFileContent
+## Get-PSLLMFileContent
 
-## Synopsis
+### Synopsis
 Retrieves the content of a file from the local LLM server.
 
-## Description
+### Description
 Gets the content of a specified file from the local LLM server using its file ID.
 
-## Parameters
-### -FileId
+### Parameters
+#### -FileId
 **Type:** String
 
 **Description:** The ID of the file to retrieve.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMFileContent -FileId "file-123456"
 ```
 
 
-# Get-PSLLMFiles
+## Get-PSLLMFiles
 
-## Synopsis
+### Synopsis
 Retrieves a list of files available on the local LLM server.
 
-## Description
+### Description
 Gets all files that have been uploaded to the local LLM server for use with
 assistants or other purposes.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMFiles
 ```
 
 
-# Remove-PSLLMFile
+## Remove-PSLLMFile
 
-## Synopsis
+### Synopsis
 Removes a file from the local LLM server.
 
-## Description
+### Description
 Deletes a specified file from the local LLM server using its file ID.
 
-## Parameters
-### -FileId
+### Parameters
+#### -FileId
 **Type:** String
 
 **Description:** The ID of the file to remove.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMFile -FileId "file-123456"
 ```
 
 
-# Get-PSLLMModel
+## Get-PSLLMModel
 
-## Synopsis
+### Synopsis
 Retrieves a specific model by name.
 
-## Description
+### Description
 Gets a model from the local LLM server using its name.
 
-## Parameters
-### -ModelName
+### Parameters
+#### -ModelName
 **Type:** String
 
 **Description:** The name of the model to retrieve.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMModel -ModelName "tinyllama"
 ```
 
 
-# Get-PSLLMModels
+## Get-PSLLMModels
 
-## Synopsis
+### Synopsis
 Retrieves all available models from the local LLM server.
 
-## Description
+### Description
 Gets a list of all models that are available on the local LLM server.
 
-## Parameters
-### -Config
+### Parameters
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMModels
 ```
 
 
-# Start-PSLLMModel
+## Start-PSLLMModel
 
-## Synopsis
+### Synopsis
 Starts a model on the local LLM server.
 
-## Description
+### Description
 Initializes and starts a specified model on the local LLM server. If the model is not
 already installed, it will be downloaded and installed first. This function handles the
 complete lifecycle of getting a model ready for use, including:
@@ -1133,27 +1133,27 @@ complete lifecycle of getting a model ready for use, including:
 - Starting the model
 - Verifying the model is running
 
-## Parameters
-### -ModelName
+### Parameters
+#### -ModelName
 **Type:** String
 
 **Description:** The name and version of the model to start, in the format "name:version".
 If not specified, uses the model from configuration.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 Starts the default model specified in configuration
 
 ```powershell
 Start-PSLLMModel
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 Starts the specified model
 
 ```powershell
@@ -1161,313 +1161,312 @@ Start-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
 
 
-# Stop-PSLLMModel
+## Stop-PSLLMModel
 
-## Synopsis
+### Synopsis
 Stops a running model on the local LLM server.
 
-## Description
+### Description
 Gracefully stops a specified model that is running on the local LLM server.
 
-## Parameters
-### -Model
+### Parameters
+#### -Model
 **Type:** Object
 
 **Description:** The model to stop.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** The name of the model to stop.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
 
 
-# Install-PSLLMModel
+## Install-PSLLMModel
 
-## Synopsis
+### Synopsis
 Installs a new model on the local LLM server.
 
-## Description
+### Description
 Downloads and installs a specified model on the local LLM server for use with chat completions
 and other tasks. Chose any model from "https://cortex.so/models".
 
-## Parameters
-### -ModelName
+### Parameters
+#### -ModelName
 **Type:** String
 
 **Description:** The name of the model to install.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Install-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
 
 
-# Remove-PSLLMModel
+## Remove-PSLLMModel
 
-## Synopsis
+### Synopsis
 Removes a model from the local LLM server.
 
-## Description
+### Description
 Deletes a specified model from the local LLM server using either its ID or name.
 
-## Parameters
-### -Model
+### Parameters
+#### -Model
 **Type:** Object
 
 **Description:** The whole model to remove.
 
-### -ModelId
+#### -ModelId
 **Type:** String
 
 **Description:** The ID of the model to remove.
 
-### -ModelName
+#### -ModelName
 **Type:** String
 
 **Description:** The title of the model to remove.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-### -WhatIf
+#### -WhatIf
 **Type:** SwitchParameter
 
 **Description:** 
 
-### -Confirm
+#### -Confirm
 **Type:** SwitchParameter
 
 **Description:** 
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMModel -ModelId "model-123456"
 ```
 
-### --- EXAMPLE 2 ---
+#### --- EXAMPLE 2 ---
 ```powershell
 Remove-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
 
 
-# Get-PSLLMEngine
+## Get-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Retrieves the requested LLM engine from the local server.
 
-## Description
+### Description
 Gets the requested LLM engine (llama-cpp, onnxruntime, tensorrt-llm) from the local server.
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to use.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMEngine -EngineName "llama-cpp"
 ```
 
 
-# Get-PSLLMEngineReleases
+## Get-PSLLMEngineReleases
 
-## Synopsis
+### Synopsis
 Retrieves all available releases for a specific LLM engine.
 
-## Description
+### Description
 Gets a list of all releases for the specified LLM engine from the local server.
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine (llama-cpp, onnxruntime, or tensorrt-llm).
 
-### -Latest
+#### -Latest
 **Type:** SwitchParameter
 
 **Description:** Switch to only get the latest release.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMEngineReleases -EngineName "llama-cpp"
 ```
 
 
-# Start-PSLLMEngine
+## Start-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Loads and starts a specific LLM engine on the local server.
 
-## Description
+### Description
 Initializes and starts the specified LLM engine on the local server.
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to start (llama-cpp, onnxruntime, or tensorrt-llm).
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Start-PSLLMEngine -EngineName "llama-cpp"
 ```
 
 
-# Update-PSLLMEngine
+## Update-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Updates a specific LLM engine on the local server.
 
-## Description
+### Description
 Updates the specified LLM engine to the latest version on the local server.
 
-## Parameters
-### -Engine
+### Parameters
+#### -Engine
 **Type:** Object
 
 **Description:** The engine to update.
 
-### -EngineName
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to update (llama-cpp, onnxruntime, or tensorrt-llm).
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Update-PSLLMEngine -EngineName "llama-cpp"
 ```
 
 
-# Stop-PSLLMEngine
+## Stop-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Stops a loaded engine on the local LLM server.
 
-## Description
+### Description
 Gracefully stops a specified engine that is running on the local LLM server.
 
-## Parameters
-### -Engine
+### Parameters
+#### -Engine
 **Type:** Object
 
 **Description:** The engine to stop.
 
-### -EngineName
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the model to stop.
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMEngine -EngineName "llama-cpp"
 ```
 
 
-# Install-PSLLMEngine
+## Install-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Installs a specific LLM engine on the local server.
 
-## Description
+### Description
 Downloads and installs the specified LLM engine on the local server.
 
-## Parameters
-### -EngineName
+### Parameters
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to install (llama-cpp, onnxruntime, or tensorrt-llm).
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Install-PSLLMEngine -EngineName "llama-cpp"
 ```
 
 
-# Uninstall-PSLLMEngine
+## Uninstall-PSLLMEngine
 
-## Synopsis
+### Synopsis
 Uninstalls a specific LLM engine from the local server.
 
-## Description
+### Description
 Removes the specified LLM engine from the local server.
 
-## Parameters
-### -Engine
+### Parameters
+#### -Engine
 **Type:** Object
 
 **Description:** The engine to uninstall.
 
-### -EngineName
+#### -EngineName
 **Type:** String
 
 **Description:** The name of the engine to uninstall (llama-cpp, onnxruntime, or tensorrt-llm).
 
-### -Config
+#### -Config
 **Type:** Object
 
 **Description:** The current configuration object.
 
-## Examples
-### --- EXAMPLE 1 ---
+### Examples
+#### --- EXAMPLE 1 ---
 ```powershell
 Uninstall-PSLLMEngine -EngineName "llama-cpp"
 ```
-
