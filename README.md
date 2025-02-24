@@ -85,12 +85,12 @@ Model size approximations based on the amount of **P**arameters and the used **Q
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
 |-------|--------|--------|--------|--------|--------|--------|
-|  1 B  | 600 MB | 700 MB | 800 MB | 900 MB |   1 GB | 1.3 GB |
-|  3 B  | 1.4 GB | 1.7 GB |   2 GB | 2.3 GB | 2.6 GB | 3.4 GB |
-|  7 B  | 2.7 GB | 3.5 GB | 4.3 GB | 5.1 GB |   6 GB | 7.7 GB |
-| 14 B  | 5.7 GB | 7.3 GB |   9 GB |  10 GB |  12 GB |  16 GB |
-| 32 B  |  12 GB |  16 GB |  19 GB |  23 GB |  27 GB |  35 GB |
-| 70 B  |  26 GB |  34 GB |  42 GB |  50 GB |   N/A  |   N/A  |
+|  **1B**  | 600 MB | 700 MB | 800 MB | 900 MB |   1 GB | 1.3 GB |
+|  **3B**  | 1.4 GB | 1.7 GB |   2 GB | 2.3 GB | 2.6 GB | 3.4 GB |
+|  **7B**  | 2.7 GB | 3.5 GB | 4.3 GB | 5.1 GB |   6 GB | 7.7 GB |
+| **14B**  | 5.7 GB | 7.3 GB |   9 GB |  10 GB |  12 GB |  16 GB |
+| **32B**  |  12 GB |  16 GB |  19 GB |  23 GB |  27 GB |  35 GB |
+| **70B**  |  26 GB |  34 GB |  42 GB |  50 GB |   N/A  |   N/A  |
 
 This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs, the only difference is speed.
 
