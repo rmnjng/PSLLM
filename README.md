@@ -81,7 +81,7 @@ Copy the name of the model, size, and quantization you want (e.g., "llama3.2:3b"
 This name can then be used as `$ModelName` parameter with the PowerShell module.
 
 
-Model size approximations based on the amount of **P***arameters and the used **Q**uantization:
+Model size approximations based on the amount of **P**arameters and the used **Q**uantization:
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
 |-------|--------|--------|--------|--------|--------|--------|
