@@ -273,28 +273,28 @@ Default is 0.95.
 **Description:** Configuration object containing system settings.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Basic usage with a simple question
 
 ```powershell
 Get-PSLLMCompletion -Message "What is the capital of France?" 
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Retrieve detailed response metadata
 
 ```powershell
 Get-PSLLMCompletion -Message "Explain quantum computing" -Detailed
 ```
 
-### -------------------------- EXAMPLE 3 --------------------------
+### --- EXAMPLE 3 ---
 Async processing with window display
 
 ```powershell
 Get-PSLLMCompletion -Message "Generate a Python script" -Async -AsyncType Window
 ```
 
-### -------------------------- EXAMPLE 4 --------------------------
+### --- EXAMPLE 4 ---
 Complex conversation thread
 
 ```powershell
@@ -370,21 +370,21 @@ Defaults to 0.8.
 If not provided, the function will import the default configuration.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Start a new conversation about Python programming
 
 ```powershell
 Enter-PSLLMConversation -Message "Explain list comprehensions in Python" -ThreadName "Python Basics"
 ``` 
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Continue an existing conversation with more context
 
 ```powershell
 Enter-PSLLMConversation -Message "Can you provide an example of a list comprehension?" -ThreadName "Python Basics" -Temperature 0.5
 ```
 
-### -------------------------- EXAMPLE 3 --------------------------
+### --- EXAMPLE 3 ---
 Use a specific model with custom settings
 
 ```powershell
@@ -428,14 +428,14 @@ Calculates cosine similarity between the input text and stored embeddings to ide
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Retrieves content most similar to the question about virtual machines.
 
 ```powershell
 Get-PSLLMRAGContent -Text "How do I create a new virtual machine?"
 ``` 
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Searches for content about Azure Storage in the AzureDocs RAG group.
 
 ```powershell
@@ -452,7 +452,7 @@ Imports the PSLLM configurations.
 Imports the PSLLM configurations from a JSON file in the local AppData directory.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Import-PSLLMConfig
 ```
@@ -487,7 +487,7 @@ Saves the PSLLM configurations to a JSON file in the local AppData directory.
 **Description:** Base URI of the Cortex server. Defaults to "http://127.0.0.1:39281".
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b-gguf" -Logging $true
 ```
@@ -533,14 +533,14 @@ If not specified, uses the engine from configuration.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Starts server with default engine and model from config
 
 ```powershell
 Start-PSLLMServer
 ```  
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Starts server with specific engine and model
 
 ```powershell
@@ -563,7 +563,7 @@ Sends a request to gracefully stop the local LLM server process.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMServer
 ```
@@ -600,21 +600,21 @@ Use this for automated installations.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Interactively installs the server with confirmation prompts
 
 ```powershell
 Install-PSLLMServer
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Installs the server without confirmation prompts 
 
 ```powershell
 Install-PSLLMServer -Force
 ```
 
-### -------------------------- EXAMPLE 3 --------------------------
+### --- EXAMPLE 3 ---
 Installs the server with detailed progress information
 
 ```powershell
@@ -655,7 +655,7 @@ If specified, the data directory is also deleted to ensure a clean uninstallatio
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Uninstalls the Cortex server and deletes its data directory.
 
 ```powershell
@@ -678,7 +678,7 @@ Gets information about the hardware configuration and capabilities of the local 
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMHardwareInfo
 ```
@@ -701,7 +701,7 @@ and server readiness.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Test-PSLLMHealth
 ```
@@ -753,12 +753,12 @@ Can optionally create the thread if it doesn't exist.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Add-PSLLMThreadMessage -ThreadId "thread-123456" -Message "Hello!"
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 ```powershell
 Add-PSLLMThreadMessage -ThreadName "My Chat" -Message "Hi there" -CreateThreadIfNotExists
 ```
@@ -800,12 +800,12 @@ Can optionally format the messages as a chat history.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThreadMessages -ThreadId "thread-123456"
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 ```powershell
 Get-PSLLMThreadMessages -ThreadName "My Chat" -FormatAsChatHistory
 ```
@@ -831,7 +831,7 @@ Gets a chat thread from the local LLM server using its title.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThread -ThreadName "My Chat Session"
 ```
@@ -852,7 +852,7 @@ Gets a list of all available chat threads from the local LLM server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMThreads
 ```
@@ -884,12 +884,12 @@ Optionally can reuse an existing thread if one exists with the same title.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 New-PSLLMThread -ThreadName "New Chat Session"
 ```
 
-### Example: -------------------------- EXAMPLE 2 --------------------------
+### Example: --- EXAMPLE 2 ---
 ```powershell
 New-PSLLMThread -ThreadName "My Chat" -ReuseExisting
 ```
@@ -935,12 +935,12 @@ Deletes a specified chat thread from the local LLM server using either its ID or
 **Description:** 
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMThread -ThreadId "thread-123456"
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 ```powershell
 Remove-PSLLMThread -ThreadName "My Chat Session"
 ```
@@ -987,12 +987,12 @@ purposes. Supports various file purposes and handles the multipart form data upl
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Add-PSLLMFile -FilePath "C:\data\context.txt"
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 ```powershell
 Add-PSLLMFile -FilePath "C:\data\training.json" -Purpose "fine-tuning"
 ```
@@ -1018,7 +1018,7 @@ Gets the content of a specified file from the local LLM server using its file ID
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMFileContent -FileId "file-123456"
 ```
@@ -1040,7 +1040,7 @@ assistants or other purposes.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMFiles
 ```
@@ -1066,7 +1066,7 @@ Deletes a specified file from the local LLM server using its file ID.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMFile -FileId "file-123456"
 ```
@@ -1092,7 +1092,7 @@ Gets a model from the local LLM server using its name.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMModel -ModelName "tinyllama"
 ```
@@ -1113,7 +1113,7 @@ Gets a list of all models that are available on the local LLM server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMModels
 ```
@@ -1146,14 +1146,14 @@ If not specified, uses the model from configuration.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 Starts the default model specified in configuration
 
 ```powershell
 Start-PSLLMModel
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 Starts the specified model
 
 ```powershell
@@ -1186,7 +1186,7 @@ Gracefully stops a specified model that is running on the local LLM server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
@@ -1213,7 +1213,7 @@ and other tasks. Chose any model from "https://cortex.so/models".
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Install-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
@@ -1259,12 +1259,12 @@ Deletes a specified model from the local LLM server using either its ID or name.
 **Description:** 
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Remove-PSLLMModel -ModelId "model-123456"
 ```
 
-### -------------------------- EXAMPLE 2 --------------------------
+### --- EXAMPLE 2 ---
 ```powershell
 Remove-PSLLMModel -ModelName "mistral:7b-gguf"
 ```
@@ -1290,7 +1290,7 @@ Gets the requested LLM engine (llama-cpp, onnxruntime, tensorrt-llm) from the lo
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMEngine -EngineName "llama-cpp"
 ```
@@ -1321,7 +1321,7 @@ Gets a list of all releases for the specified LLM engine from the local server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Get-PSLLMEngineReleases -EngineName "llama-cpp"
 ```
@@ -1347,7 +1347,7 @@ Initializes and starts the specified LLM engine on the local server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Start-PSLLMEngine -EngineName "llama-cpp"
 ```
@@ -1378,7 +1378,7 @@ Updates the specified LLM engine to the latest version on the local server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Update-PSLLMEngine -EngineName "llama-cpp"
 ```
@@ -1409,7 +1409,7 @@ Gracefully stops a specified engine that is running on the local LLM server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Stop-PSLLMEngine -EngineName "llama-cpp"
 ```
@@ -1435,7 +1435,7 @@ Downloads and installs the specified LLM engine on the local server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Install-PSLLMEngine -EngineName "llama-cpp"
 ```
@@ -1466,7 +1466,7 @@ Removes the specified LLM engine from the local server.
 **Description:** The current configuration object.
 
 ## Examples
-### -------------------------- EXAMPLE 1 --------------------------
+### --- EXAMPLE 1 ---
 ```powershell
 Uninstall-PSLLMEngine -EngineName "llama-cpp"
 ```
