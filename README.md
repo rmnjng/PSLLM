@@ -83,7 +83,7 @@ This name can then be used as `$ModelName` parameter with the PowerShell module.
 Model size approximations based on the amount of **P**arameters and the used **Q**uantization:
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
-|-------|--------|--------|--------|--------|--------|--------|
+|-------|:------:|:------:|:------:|:------:|:------:|:------:|
 |  **1B**  | 0.6GB | 0.7GB | 0.8GB | 0.9GB |   1GB | 1.3GB |
 |  **3B**  | 1.4GB | 1.7GB |   2GB | 2.3GB | 2.6GB | 3.4GB |
 |  **7B**  | 2.7GB | 3.5GB | 4.3GB | 5.1GB |   6GB | 7.7GB |
