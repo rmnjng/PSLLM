@@ -104,6 +104,9 @@ Save-PSLLMConfig -Logging $true -ModelName 'deepseek-r1-distill-llama-8b:8b-gguf
 
 For all configuration options, check out [Save-PSLLMConfig](#save-psllmconfig).
 
+### Verbose
+For interactive usage, for example during development, it is highly recommended to make use of the '-Verbose' parameter, available for every PSLLM function.
+
 
 ## Command Reference  
 See the [full command reference](#functions) for details on available cmdlets.  
