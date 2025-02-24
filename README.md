@@ -9,6 +9,17 @@ PSLLM is a PowerShell module for managing and interacting with a locally hosted 
 - **Model & Engine Management**: Install, start, stop, and retrieve model and engine details.  
 - **File & RAG Integration**: Upload and retrieve files for AI-augmented searches.  
 
+## Purpose
+PSLLM **should** be used for...
+- Sensitive data: completeley local LLMs, no data leaves the computer.
+- Asynchronous workflows: with e.g., scheduled tasks or in potentially long-running scripts.
+- Bulk operations: because it can be scheduled and run in the background, it is perfect for operating the same or multiple LLM operations based on an array of inputs.
+- Cost-sensitive automation: it is free, what do you want more?
+- PowerShell integration: everything you can access from PowerShell (local and Internet) can be used in the LLM workflow, e.g., as input data or output mechanism.
+
+PSLLM **should not** be used for...
+- acting as chatbot: speed heavily relies on your hardware. A cloud GPU cluster will be faster, but not every workflow depends on speed. And at the pace models currently advance in quality and speed, this will not be an issue for long.
+
 ## Installation  
 ### Prerequisites  
 - PowerShell 5.1
@@ -27,46 +38,88 @@ Install-Module -Name PSLLM -Scope CurrentUser
    Import-Module PSLLM
    ```
 
-## Quick Start  
-### Starting the Server
+
+## Quick Start
+### Generating AI Responses
 ```powershell
-Start-PSLLMServer
+Get-PSLLMCompletion -Message "What is the capital of France?"
 ```
 
-### Generating AI Responses  
+On the first run, the following happens:
+- Download and run the [Cortex Windows installer](https://cortex.so/) (~1.8 GB)
+- Download the default engine ([llama-cpp](https://github.com/ggml-org/llama.cpp))
+- Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral))
+ - Model size depends on the amount of parameters as well as quantization. Check out [Managing Models](#managing-models) for more information.
+- Generate the response
+
+### Managing Conversations
+This command starts or adds to a multi-turn conversation. It sends the whole thread to the LLM and adds the new message as well as the AI answer to the thread.
 ```powershell
-Get-PSLLMCompletion -Message "What is PowerShell?"
+Enter-PSLLMConversation -Message "Explain list comprehensions in Python" -ThreadName "Python Basics"
 ```
 
-### Managing Conversations  
+Display the whole thread:
 ```powershell
-$thread = New-PSLLMThread -Title "My Chat Session"
-Add-PSLLMThreadMessage -ThreadId $thread.Id -Message "Hello, AI!"
+Get-PSLLMThreadMessages -ThreadName "Python Basics" -FormatAsChatHistory
 ```
+
+### Managing Models
+Model selection can be tricky, because the options are vast. The recommendation is to start with specially prepared models by Cortex.so, found on [HuggingFace](https://huggingface.co/cortexso).
+Every model in the *.gguf format can be used, but let's start with the Cortex.so models.
+
+The easiest way is through their [model page](https://cortex.so/models). Copy the command of the model you'd like to try (e.g., "cortex run llama3.2").
+Open up a command prompt and run the command, after installing Cortex ("Install-PSLLMServer").
+Then you should be presented a selection of models. In this example:
+```bash
+Available to download:
+    1. llama3.2:1b
+    2. llama3.2:3b
+```
+
+Copy the name of the model, size, and quantization you want (e.g., "llama3.2:3b"), for reference check the table below.
+
+This name can then be used as `$ModelName` parameter with the PowerShell module.
+
+
+Model size approximations based on the amount of **P***arameters and the used **Q**uantization:
+
+|  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
+|-------|--------|--------|--------|--------|--------|--------|
+|  1 B  | 600 MB | 700 MB | 800 MB | 900 MB |   1 GB | 1.3 GB |
+|  3 B  | 1.4 GB | 1.7 GB |   2 GB | 2.3 GB | 2.6 GB | 3.4 GB |
+|  7 B  | 2.7 GB | 3.5 GB | 4.3 GB | 5.1 GB |   6 GB | 7.7 GB |
+| 14 B  | 5.7 GB | 7.3 GB |   9 GB |  10 GB |  12 GB |  16 GB |
+| 32 B  |  12 GB |  16 GB |  19 GB |  23 GB |  27 GB |  35 GB |
+| 70 B  |  26 GB |  34 GB |  42 GB |  50 GB |   N/A  |   N/A  |
+
+This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs, the only difference is speed.
+
+### Storing Default Configurations
+Some parameters that are used throughout the module can be stored centrally. This eliminates the need for specifying each time. 
+This example enbales logging to '`$env:localappdata`\PSLLM\PSLLM.log' and sets the 8 B DeepSeek llama distilation (q4) model as default. If not already, the model will be downloaded and loaded by default.
+
+```powershell
+Save-PSLLMConfig -Logging $true -ModelName 'deepseek-r1-distill-llama-8b:8b-gguf-q4-km'
+```
+
+For all configuration options, check out [Save-PSLLMConfig](#save-psllmconfig).
+
 
 ## Command Reference  
 See the [full command reference](#functions) for details on available cmdlets.  
 
-## Configuration  
-- Load saved configurations:  
-  ```powershell
-  Import-PSLLMConfig
-  ```
-- Save settings:  
-  ```powershell
-  Save-PSLLMConfig -Logging $true
-  ```
 
 ## Contributing  
 Contributions are welcome!
+
 
 ## License  
 This project is licensed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.
 PSLLM is built on top of other open source projects, most directly on [Cortex.so](https://cortex.so/).
 
+
 ## Support  
 For issues, please open a ticket on the [GitHub Issues](#) page.  
-
 
 
 ## Functions
