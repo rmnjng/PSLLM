@@ -85,7 +85,7 @@ Model size approximations based on the amount of **P**arameters and the used **Q
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
 |-------|--------|--------|--------|--------|--------|--------|
-|  **1B**  | 600 MB | 700 MB | 800 MB | 900 MB |   1 GB | 1.3 GB |
+|  **1B**  | 0.6 GB | 0.7 GB | 0.8 GB | 0.9 GB |   1 GB | 1.3 GB |
 |  **3B**  | 1.4 GB | 1.7 GB |   2 GB | 2.3 GB | 2.6 GB | 3.4 GB |
 |  **7B**  | 2.7 GB | 3.5 GB | 4.3 GB | 5.1 GB |   6 GB | 7.7 GB |
 | **14B**  | 5.7 GB | 7.3 GB |   9 GB |  10 GB |  12 GB |  16 GB |
