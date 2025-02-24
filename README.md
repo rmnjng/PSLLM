@@ -6,19 +6,19 @@ PSLLM is a PowerShell module for managing and interacting with a locally hosted 
 ## Features  
 - **AI Completion & Conversations**: Generate AI responses and manage chat threads.  
 - **Configuration & Server Control**: Install, start, stop, and configure the LLM server.  
-- **Model & Engine Management**: Install, start, stop, and retrieve model and engine details.  
+- **Model & Engine Management**: Install, start, stop, and retrieve models and engines.  
 - **File & RAG Integration**: Upload and retrieve files for AI-augmented searches.  
 
 ## Purpose
 PSLLM **should** be used for...
-- Sensitive data: completeley local LLMs, no data leaves the computer.
-- Asynchronous workflows: with e.g., scheduled tasks or in potentially long-running scripts.
-- Bulk operations: because it can be scheduled and run in the background, it is perfect for operating the same or multiple LLM operations based on an array of inputs.
-- Cost-sensitive automation: it is free, what do you want more?
-- PowerShell integration: everything you can access from PowerShell (local and Internet) can be used in the LLM workflow, e.g., as input data or output mechanism.
+- **Sensitive data**: completeley local LLMs, no data ever leaves the computer.
+- **Asynchronous workflows**: with e.g., scheduled tasks or in potentially long-running scripts.
+- **Bulk operations**: because it can be scheduled and run in the background, it is perfect for operating the same or multiple LLM operations based on an array of inputs.
+- **Cost-sensitive automation**: it is free, what do you want more?
+- **PowerShell integrations**: everything you can access from PowerShell (local and Internet) can be used in the LLM workflow, e.g., as input data or output mechanism.
 
 PSLLM **should not** be used for...
-- acting as chatbot: speed heavily relies on your hardware. A cloud GPU cluster will be faster, but not every workflow depends on speed. And at the pace models currently advance in quality and speed, this will not be an issue for long.
+- **Acting as a chatbot**: speed heavily relies on your hardware. A cloud GPU cluster will be faster, but not every workflow depends on speed. And at the pace models currently advance in quality and speed, this will not be an issue for long.
 
 ## Installation  
 ### Prerequisites  
