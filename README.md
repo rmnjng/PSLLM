@@ -119,7 +119,9 @@ Contributions are welcome!
 
 ## License  
 This project is licensed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.
-PSLLM is built on top of other open source projects, most directly on [Cortex.so](https://cortex.so/).
+PSLLM is built on top of other open source projects, most directly on [Cortex.so](https://cortex.so/). Therefore, PSLLM uses the same license.
+
+All the LLM models that can be used are open source, but they are licensed individually. You are responsible to research and know the license requirements of the configuration you use (check on [HuggingFace](https://huggingface.co/) for example).
 
 
 ## Support  
