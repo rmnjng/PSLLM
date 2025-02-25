@@ -51,6 +51,8 @@ On the first run, the following happens:
 - Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral)) - Model size depends on the amount of parameters as well as quantization. Check out [Managing Models](#managing-models) for more information.
 - Generate the response.
 
+Subsequent executions start the server, if not started, load the model, if not loaded, and generate the response. 
+
 ### Managing Conversations
 This command starts or adds to a multi-turn conversation. It sends the whole thread to the LLM and adds the new message as well as the AI answer to the thread.
 ```powershell
@@ -77,7 +79,7 @@ Available to download:
 
 Copy the name of the model, size, and quantization you want (e.g., "llama3.2:3b"), for reference check the table below.
 
-This name can then be used as `$ModelName` parameter with the PowerShell module.
+This name can then be used as `$ModelName` parameter within the PowerShell module. The command prompt can now be closed.
 
 
 Model size approximations based on the amount of **P**arameters and the used **Q**uantization:
@@ -94,11 +96,11 @@ Model size approximations based on the amount of **P**arameters and the used **Q
 This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs, the only difference is speed.
 
 ### Storing Default Configurations
-Some parameters that are used throughout the module can be stored centrally. This eliminates the need for specifying each time. 
-This example enbales logging to '`$env:localappdata\PSLLM\PSLLM.log`' and sets the 8 B DeepSeek llama distilation (q4) model as default. If not already, the model will be downloaded and loaded by default.
+Some parameters that are used throughout the module can be stored centrally. This eliminates the need for specifying each time.
+This example enbales logging to '`$env:localappdata\PSLLM\PSLLM.log`' and sets the Llama 3.2 model with 3 billion parameters as default. If not already, the model will be downloaded and loaded by default.
 
 ```powershell
-Save-PSLLMConfig -Logging $true -ModelName 'deepseek-r1-distill-llama-8b:8b-gguf-q4-km'
+Save-PSLLMConfig -Logging $true -ModelName 'llama3.2:3b'
 ```
 
 For all configuration options, check out [Save-PSLLMConfig](#save-psllmconfig).
