@@ -24,7 +24,7 @@
     # CompanyName = ''
  
     # Copyright statement for this module
-    Copyright = 'Copyright © 2024 rmnjng. All rights reserved.'
+    Copyright = 'Copyright © 2025 rmnjng. All rights reserved.'
  
     # Description of the functionality provided by this module
     Description = 'Powerful, secure, and free AI for every PowerShell workflow — running locally, with full control.'
