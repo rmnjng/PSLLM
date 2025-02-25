@@ -69,7 +69,7 @@ Model selection can be tricky, because the options are vast. The recommendation 
 Every model in the *.gguf format can be used, but let's start with the Cortex.so models.
 
 The easiest way is through their [model page](https://cortex.so/models). Copy the command of the model you'd like to try (e.g., "cortex run llama3.2").
-Open up a command prompt and run the command, after installing Cortex ("Install-PSLLMServer").
+Open up a command prompt and run the command, after installing Cortex (run in PowerShell: "Install-PSLLMServer").
 Then you should be presented a selection of models. In this example:
 ```bash
 Available to download:
