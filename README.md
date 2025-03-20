@@ -11,19 +11,19 @@ PSLLM is a PowerShell module for managing and interacting with a locally hosted 
 
 ## Purpose
 PSLLM **should** be used for...
-- **Sensitive data**: completeley local LLMs, no data ever leaves the computer.
-- **Asynchronous workflows**: with e.g., scheduled tasks or in potentially long-running scripts.
-- **Bulk operations**: because it can be scheduled and run in the background, it is perfect for operating the same or multiple LLM operations based on an array of inputs.
-- **Cost-sensitive automation**: it is free, what do you want more?
-- **PowerShell integrations**: everything you can access from PowerShell (local and Internet) can be used in the LLM workflow, e.g., as input data or output mechanism.
+- **Sensitive Data**: Completely local LLMs - no data ever leaves the computer.
+- **Asynchronous Workflows**: With e.g., scheduled tasks or in potentially long-running scripts.
+- **Bulk Operations**: Because it can be scheduled and run in the background, it is perfect for operating the same or multiple LLM operations based on an array of inputs.
+- **Cost-sensitive Automation**: It is free - what more could you want?
+- **PowerShell Integrations**: Everything you can access from PowerShell (local and Internet) can be used in the LLM workflow, e.g., as input data or output mechanism.
 
 PSLLM **should not** be used for...
-- **Acting as a chatbot**: speed heavily relies on your hardware. A cloud GPU cluster will be faster, but not every workflow depends on speed. And at the pace models currently advance in quality and speed, this will not be an issue for long.
+- **Acting as a Chatbot**: Speed depends heavily on your hardware. A cloud GPU cluster will be faster, but not every workflow depends on speed. And at the pace models currently advance in quality and speed, this will not be an issue for long.
 
 ## Installation  
 ### Prerequisites  
 - PowerShell 5.1
-- Internet for installation, not for LLM usage.
+- Internet for installation, not for LLM usage
 
 ### Install from PowerShell Gallery  
 ```powershell
@@ -46,9 +46,9 @@ Get-PSLLMCompletion -Message "What is the capital of France?"
 ```
 
 On the first run, the following happens:
-- Download and run the [Cortex Windows installer](https://cortex.so/) (~1.8 GB).
+- Download and install the [Cortex Windows installer](https://cortex.so/) (~1.8 GB).
 - Download the default engine ([llama-cpp](https://github.com/ggml-org/llama.cpp)).
-- Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral)) - Model size depends on the amount of parameters as well as quantization. Check out [Managing Models](#managing-models) for more information.
+- Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral)) - Model size depends on the number of parameters as well as the quantization level. Check out [Managing Models](#managing-models) for more information.
 - Generate the response.
 
 Subsequent executions start the server, if not started, load the model, if not loaded, and generate the response. 
@@ -68,8 +68,8 @@ Get-PSLLMThreadMessages -ThreadName "Python Basics" -FormatAsChatHistory
 Model selection can be tricky, because the options are vast. The recommendation is to start with specially prepared models by Cortex.so, found on [HuggingFace](https://huggingface.co/cortexso).
 Every model in the *.gguf format can be used, but let's start with the Cortex.so models.
 
-The easiest way is through their [model page](https://cortex.so/models). Copy the command of the model you'd like to try (e.g., "cortex run llama3.2").
-Open up a command prompt and run the command, after installing Cortex (run in PowerShell: "Install-PSLLMServer").
+The easiest way is through their [model page](https://cortex.so/models). Copy the command for the model you'd like to try (e.g., `cortex run llama3.2`).
+Open up a command prompt and run the command, after installing Cortex (run in PowerShell: `Install-PSLLMServer`).
 Then you should be presented a selection of models. In this example:
 ```bash
 Available to download:
@@ -79,10 +79,10 @@ Available to download:
 
 Copy the name of the model, size, and quantization you want (e.g., "llama3.2:3b"), for reference check the table below.
 
-This name can then be used as `$ModelName` parameter within the PowerShell module. The command prompt can now be closed.
+This name can then be used as the `$ModelName` parameter within the PowerShell module. The command prompt can now be closed.
 
 
-Model size approximations based on the amount of **P**arameters and the used **Q**uantization:
+Model size approximations based on the number of **P**arameters and the used **Q**uantization level:
 
 |  P/Q  |   q2   |   q3   |   q4   |   q5   |   q6   |   q8   |
 |-------|:------:|:------:|:------:|:------:|:------:|:------:|
@@ -93,17 +93,17 @@ Model size approximations based on the amount of **P**arameters and the used **Q
 | **32B**  |  12GB |  16GB |  19GB |  23GB |  27GB |  35GB |
 | **70B**  |  26GB |  34GB |  42GB |  50GB |   N/A  |   N/A  |
 
-This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs, the only difference is speed.
+This is also roughly the amount of physical memory (RAM, not GPU) needed to run the models. Inference can be run on GPUs as well as CPUs; the primary difference is speed.
 
 ### Storing Default Configurations
 Some parameters that are used throughout the module can be stored centrally. This eliminates the need for specifying each time.
-This example enbales logging to '`$env:localappdata\PSLLM\PSLLM.log`' and sets the Llama 3.2 model with 3 billion parameters as default. If not already, the model will be downloaded and loaded by default.
+This example enables logging to '`$env:localappdata\PSLLM\PSLLM.log`' and sets the Llama 3.2 model with 3 billion parameters as default. If not already, the model will be downloaded and loaded by default.
 
 ```powershell
 Save-PSLLMConfig -Logging $true -ModelName 'llama3.2:3b'
 ```
 
-For all configuration options, check out [Save-PSLLMConfig](#save-psllmconfig).
+For all configuration options, see [Save-PSLLMConfig](#save-psllmconfig).
 
 ### Verbose
 For interactive usage, for example during development, it is highly recommended to make use of the '-Verbose' parameter, available for every PSLLM function.
