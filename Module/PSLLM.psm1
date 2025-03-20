@@ -1130,6 +1130,9 @@ function Uninstall-PSLLMServer {
     .PARAMETER DeleteData
     Removes the data directory after uninstallation.
 
+    .PARAMETER RemoveInstaller
+    Removes the original installer file after uninstallation.
+
     .PARAMETER DataDirectory
     Specifies the path to the data directory. Defaults to `%LOCALAPPDATA%\PSLLM`.
 
@@ -1152,6 +1155,9 @@ function Uninstall-PSLLMServer {
         [switch]$DeleteData,
 
         [Parameter(Mandatory = $false)]
+        [switch]$RemoveInstaller,
+
+        [Parameter(Mandatory = $false)]
         [string]$DataDirectory = "$($env:localappdata)\PSLLM",
 
         [Parameter(Mandatory = $false)]
@@ -1166,6 +1172,7 @@ function Uninstall-PSLLMServer {
         $cortexDir = "$env:localappdata\cortexcpp"
         $uninstallerPath = "$cortexDir\unins000.exe"
         $executable = "$cortexDir\cortex.exe"
+        $cortexInstaller = "$env:TEMP\cortexinstaller.exe"
         
         if (Test-Path -Path $executable) {
             Write-PSLLMLog -Line "Starting Cortex server uninstallation." -Function $MyInvocation.MyCommand -Config $Config
@@ -1186,10 +1193,15 @@ function Uninstall-PSLLMServer {
         if (Test-Path $cortexDir) {
             $null = Remove-Item -Path $cortexDir -Recurse -Force
         }
+
+        if (($RemoveInstaller.IsPresent) -and (Test-Path $cortexInstaller)) {
+            $null = Remove-Item -Path $cortexInstaller -Force -ErrorAction SilentlyContinue
+            Write-PSLLMLog -Line "Cortex installer deleted." -Function $MyInvocation.MyCommand -Config $Config
+        }
         
         if (($DeleteData.IsPresent) -and (Test-Path $DataDirectory)) {
             Start-Sleep -Seconds 1
-            $null = Remove-Item -Path "$DataDirectory" -Recurse -Force -ErrorAction SilentlyContinue
+            $null = Remove-Item -Path $DataDirectory -Recurse -Force -ErrorAction SilentlyContinue
             Write-Output "Data deleted."
         }
         Write-Output "Cortex uninstalled. Reinstall with 'Start-PSLLMServer'."
