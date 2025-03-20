@@ -46,7 +46,7 @@ Get-PSLLMCompletion -Message "What is the capital of France?"
 ```
 
 On the first run, the following happens:
-- Download and install the [Cortex Windows installer](https://cortex.so/) (~1.8 GB).
+- Download and install the [Cortex Windows installer](https://cortex.so/) (~1.3 GB).
 - Download the default engine ([llama-cpp](https://github.com/ggml-org/llama.cpp)).
 - Download and load the default model ([Mistral 7B](https://huggingface.co/cortexso/mistral)) - Model size depends on the number of parameters as well as the quantization level. Check out [Managing Models](#managing-models) for more information.
 - Generate the response.
@@ -391,7 +391,7 @@ Enter-PSLLMConversation -Message "Can you provide an example of a list comprehen
 Use a specific model with custom settings
 
 ```powershell
-Enter-PSLLMConversation -Message "Write a short poem about technology" -ThreadName "Creative Writing" -ModelName "mistral:7b-gguf" -MaxTokens 2048 -Temperature 0.9
+Enter-PSLLMConversation -Message "Write a short poem about technology" -ThreadName "Creative Writing" -ModelName "mistral:7b" -MaxTokens 2048 -Temperature 0.9
 ```
 
 
@@ -492,7 +492,7 @@ Saves the PSLLM configurations to a JSON file in the local AppData directory.
 ### Examples
 #### --- EXAMPLE 1 ---
 ```powershell
-Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b-gguf" -Logging $true
+Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b" -Logging $true
 ```
 
 ## Start-PSLLMServer
@@ -547,7 +547,7 @@ Start-PSLLMServer
 Starts server with specific engine and model
 
 ```powershell
-Start-PSLLMServer -EngineName "llama-cpp" -ModelName "mistral:7b-gguf"
+Start-PSLLMServer -EngineName "llama-cpp" -ModelName "mistral:7b"
 ```  
 
 
@@ -581,7 +581,7 @@ Installs the Cortex server for local LLM operations.
 Downloads and installs the Cortex server application required for running local LLM operations.
 This function handles the complete installation process including:
 - Checking for existing installation
-- Downloading the installer (~1.8 GB)
+- Downloading the installer (~1.3 GB)
 - Running the installation
 - Verifying the installation
 
@@ -1160,7 +1160,7 @@ Start-PSLLMModel
 Starts the specified model
 
 ```powershell
-Start-PSLLMModel -ModelName "mistral:7b-gguf"
+Start-PSLLMModel -ModelName "mistral:7b"
 ```
 
 
@@ -1191,7 +1191,7 @@ Gracefully stops a specified model that is running on the local LLM server.
 ### Examples
 #### --- EXAMPLE 1 ---
 ```powershell
-Stop-PSLLMModel -ModelName "mistral:7b-gguf"
+Stop-PSLLMModel -ModelName "mistral:7b"
 ```
 
 
@@ -1218,7 +1218,7 @@ and other tasks. Chose any model from "https://cortex.so/models".
 ### Examples
 #### --- EXAMPLE 1 ---
 ```powershell
-Install-PSLLMModel -ModelName "mistral:7b-gguf"
+Install-PSLLMModel -ModelName "mistral:7b"
 ```
 
 
@@ -1269,7 +1269,7 @@ Remove-PSLLMModel -ModelId "model-123456"
 
 #### --- EXAMPLE 2 ---
 ```powershell
-Remove-PSLLMModel -ModelName "mistral:7b-gguf"
+Remove-PSLLMModel -ModelName "mistral:7b"
 ```
 
 

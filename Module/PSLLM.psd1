@@ -9,7 +9,7 @@
     RootModule = 'PSLLM.psm1'
  
     # Version number of this module.
-    ModuleVersion = '0.5.1'
+    ModuleVersion = '0.5.2'
  
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@
     Copyright = 'Copyright © 2025 rmnjng. All rights reserved.'
  
     # Description of the functionality provided by this module
-    Description = 'Powerful, secure, and free AI for every PowerShell workflow — running locally, with full control.'
+    Description = 'Powerful, secure, and free AI for every PowerShell workflow - running locally, with full control.'
  
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1.0.0'

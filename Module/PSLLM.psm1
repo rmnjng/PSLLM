@@ -347,7 +347,7 @@ function Enter-PSLLMConversation {
 
     .EXAMPLE
     # Use a specific model with custom settings
-    Enter-PSLLMConversation -Message "Write a short poem about technology" -ThreadName "Creative Writing" -ModelName "mistral:7b-gguf" -MaxTokens 2048 -Temperature 0.9
+    Enter-PSLLMConversation -Message "Write a short poem about technology" -ThreadName "Creative Writing" -ModelName "mistral:7b" -MaxTokens 2048 -Temperature 0.9
 
     .OUTPUTS
     System.Object[]
@@ -602,7 +602,7 @@ function Import-PSLLMConfig {
     } else {
         $config = @{
             EngineName = 'llama-cpp'
-            ModelName  = 'mistral:7b-gguf'
+            ModelName  = 'mistral:7b'
             Logging    = $false
             BaseUri    = 'http://127.0.0.1:39281'
         }
@@ -633,7 +633,7 @@ function Save-PSLLMConfig {
     Base URI of the Cortex server. Defaults to "http://127.0.0.1:39281".
 
     .EXAMPLE
-    Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b-gguf" -Logging $true
+    Save-PSLLMConfig -EngineName "llama-cpp" -ModelName "mistral:7b" -Logging $true
     #>
     [CmdletBinding()]
     param (
@@ -749,7 +749,7 @@ function Start-PSLLMServer {
     # Starts server with default engine and model from config
 
     .EXAMPLE
-    Start-PSLLMServer -EngineName "llama-cpp" -ModelName "mistral:7b-gguf"
+    Start-PSLLMServer -EngineName "llama-cpp" -ModelName "mistral:7b"
     # Starts server with specific engine and model
 
     .OUTPUTS
@@ -1004,7 +1004,7 @@ function Install-PSLLMServer {
     Downloads and installs the Cortex server application required for running local LLM operations.
     This function handles the complete installation process including:
     - Checking for existing installation
-    - Downloading the installer (~1.8 GB)
+    - Downloading the installer (~1.3 GB)
     - Running the installation
     - Verifying the installation
 
@@ -1074,7 +1074,7 @@ function Install-PSLLMServer {
         else {
             # Handle download confirmation
             if (-not $Force) {
-                $confirmation = Read-Host -Prompt "Need to download the Cortex installer (~1.8 GB). Proceed? (yes/no)"
+                $confirmation = Read-Host -Prompt "Need to download the Cortex installer (~1.3 GB). Proceed? (yes/no)"
                 if ($confirmation -notmatch '^(y|yes)$') {
                     throw "Installation cancelled by user."
                 }
@@ -1094,8 +1094,8 @@ function Install-PSLLMServer {
 
         # Run installation
         Write-PSLLMLog -Line "Starting installation process." -Function $MyInvocation.MyCommand -Config $Config
-
-        $result = Start-Process -FilePath $installerPath -ArgumentList "/SP- /VERYSILENT /SUPPRESSMSGBOXES" -Wait -PassThru
+        $result = Start-Process -FilePath $installerPath -ArgumentList "/SP- /VERYSILENT /SUPPRESSMSGBOXES" -PassThru
+        Wait-Process -InputObject $result
         
         if ($result.ExitCode -eq 0) {
             Write-PSLLMLog -Line "Installation completed successfully." -Function $MyInvocation.MyCommand -Config $Config
@@ -2162,7 +2162,7 @@ function Start-PSLLMModel {
     # Starts the default model specified in configuration
 
     .EXAMPLE
-    Start-PSLLMModel -ModelName "mistral:7b-gguf"
+    Start-PSLLMModel -ModelName "mistral:7b"
     # Starts the specified model
     #>
     [CmdletBinding(SupportsShouldProcess)]
@@ -2237,7 +2237,7 @@ function Stop-PSLLMModel {
     The current configuration object.
 
     .EXAMPLE
-    Stop-PSLLMModel -ModelName "mistral:7b-gguf"
+    Stop-PSLLMModel -ModelName "mistral:7b"
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -2298,7 +2298,7 @@ function Install-PSLLMModel {
     The current configuration object.
 
     .EXAMPLE
-    Install-PSLLMModel -ModelName "mistral:7b-gguf"
+    Install-PSLLMModel -ModelName "mistral:7b"
     #>
     [CmdletBinding()]
     param(
@@ -2384,7 +2384,7 @@ function Remove-PSLLMModel {
     Remove-PSLLMModel -ModelId "model-123456"
 
     .EXAMPLE
-    Remove-PSLLMModel -ModelName "mistral:7b-gguf"
+    Remove-PSLLMModel -ModelName "mistral:7b"
     #>
     [CmdletBinding(SupportsShouldProcess)]
     param(
@@ -3288,8 +3288,6 @@ function Invoke-PSLLMRequest {
                 if ($isVerbose) { $VerbosePreference = 'Continue' }
             } catch {
                 if ($isVerbose) { $VerbosePreference = 'Continue' }
-                #$responseMessage = ($_ | ConvertFrom-Json).message
-                #write-host $responseMessage
                 Write-PSLLMLog -Line "Failed request: $responseMessage" -Function $MyInvocation.MyCommand -Severity Warning -Config $Config
                 Start-PSLLMServer -EngineName $EngineName -ModelName $ModelName -Config $Config -ModelNeeded $ModelNeeded -Restart
                 if ($isVerbose) { $VerbosePreference = 'SilentlyContinue' }
@@ -3309,6 +3307,8 @@ function Invoke-PSLLMRequest {
                     $responseMessage = ($tempResponse | ConvertFrom-Json).message
                     switch ($responseMessage) {
                         'Invalid model handle or not supported!' {return $false}
+                        'Failed to load model' {return $false}
+                        'Failed to get latest version: Failed to fetch engine cortex.llamacpp latest version!' {return $false}
                     }
                 } catch {
                     $responseMessage = $tempResponse
